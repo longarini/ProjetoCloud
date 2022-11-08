@@ -4,7 +4,7 @@ const app = express();
 
 const port = process.env.PORT || '3030';
 
-app.get('/', (req, res) => {
+app.get('/teste', (req, res) => {
 
 res.send('Your Express API is up and running!');
 
