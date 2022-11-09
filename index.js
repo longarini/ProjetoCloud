@@ -1,17 +1,9 @@
-const express = require('express');
-
-const app = express();
-
-const port = process.env.PORT;
-
-app.get('/teste', (req, res) => {
-
-res.send('Your Express API is up and running!');
-
-});
+const app = require('./config/express')();
+const port = app.get('port');
+const mongoose = require('./config/mongoose');
+const jwt = require('jsonwebtoken');
+require("dotenv-safe").config();
 
 app.listen(port, () => {
-
-console.log(`listening at http://localhost:${port}`);
-
+    console.log('Servidor Online (' + port + ')')
 });
