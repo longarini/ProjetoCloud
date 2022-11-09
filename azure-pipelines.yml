@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '0711c107-fcd5-4711-827a-fff38c882d9b'
-  imageRepository: 'projetocloudn2'
-  containerRegistry: 'lpivapigamificacao.azurecr.io'
+  dockerRegistryServiceConnection: 'a146b564-6475-4d5a-bac4-319b5f0a20cf'
+  imageRepository: 'pplngamecloud'
+  containerRegistry: 'rcgamecloud.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
