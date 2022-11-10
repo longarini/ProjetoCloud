@@ -55,5 +55,5 @@ stages:
         - task: PublishTestResults@2
           displayName: "Publish Test Results"
           inputs:
-            testResultsFiles: '$(System.DefaultWorkingDirectory)\test\Results\*.xml '
+            testResultsFiles: '$(System.DefaultWorkingDirectory)\Results\*.xml '
             failTaskOnFailedTests: true
