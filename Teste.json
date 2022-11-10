@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "ad8c2575-6343-462c-82e8-5fee5e47b2e2",
+		"name": "N2 Gabriel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9528668"
+	},
+	"item": [
+		{
+			"name": "Tarefas",
+			"item": [
+				{
+					"name": "Buscar todas Tarefas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/tarefas",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tarefas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Tarefa por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/tarefaId/2",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tarefaId",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Tarefa por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/tarefaId/2",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tarefaId",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Tarefa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Tarefa Teste\",\r\n    \"pontos\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/tarefas",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tarefas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTarefa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"descricao\": \"Tarefa Teste\",\r\n    \"pontos\": 50,\r\n    \"ativa\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/tarefas",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tarefas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Cria Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Usuario Teste\",\r\n    \"sobrenome\": \"Costa\",\r\n    \"admin\": \"sim\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/usuarios",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Todos Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/usuarios",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/usuarios/2",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Usuario por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/usuarios/:EL3m8R38/keVJfJSfvZP4g==",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								":EL3m8R38",
+								"keVJfJSfvZP4g=="
+							],
+							"variable": [
+								{
+									"key": "EL3m8R38",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nome\": \"Usuario Teste 1\",\r\n    \"tipo\": \"adm\",\r\n    \"ativo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/usuarios",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atribuicao",
+			"item": [
+				{
+					"name": "Buscar todas Atribuicoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/atribuicao",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"atribuicao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Atribuicao por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/atribuicao/2",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"atribuicao",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Atribuicao por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/atribuicao/2",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"atribuicao",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Atribuicao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\": 7,\r\n    \"idTarefa\": 7,\r\n    \"concluida\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/atribuicao",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"atribuicao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"longarinii\",\r\n    \"pwd\": \"123456\",\r\n    \"email\": \"vlongarini@outlook.com\",\r\n    \"nome\": \"Vítor\",\r\n    \"sobrenome\": \"Longarini da Costa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/usuarios",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"teste\",\r\n    \"pwd\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/login",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "CreateGroup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"longarini\",\r\n    \"nomeGrupo\": \"GrupoTeste\",\r\n    \"adminUsers\": [\"teste\", \"teste1\", \"teste2\"],\r\n    \"comunUsers\": [\"teste\", \"teste1\"],\r\n    \"ativo\": \"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gamecloudn2.azurewebsites.net/api/v1/groups",
+							"protocol": "https",
+							"host": [
+								"gamecloudn2",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

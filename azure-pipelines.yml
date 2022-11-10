@@ -36,3 +36,24 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: 'latest'
+- stage: Test
+  displayName: Test
+  jobs:
+    - job: Test_Postman
+      pool:
+        vmImage: "windows-latest"
+        name: Azure Pipelines
+      steps:
+        - script: "npm install -g newman"
+          workingDirectory: "$(System.DefaultWorkingDirectory)"
+          displayName: "Install newman"
+
+        - script: 'newman run Teste.json --reporters cli,junit --reporter-junit-export Result\junitReport.xml --suppress-exit-code'
+          displayName: "Run API Tests"
+          continueOnError: true
+
+        - task: PublishTestResults@2
+          displayName: "Publish Test Results"
+          inputs:
+            testResultsFiles: '$(System.DefaultWorkingDirectory)\test\Results\*.xml '
+            failTaskOnFailedTests: true
