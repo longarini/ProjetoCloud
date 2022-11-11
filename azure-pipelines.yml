@@ -48,7 +48,7 @@ stages:
           workingDirectory: "$(System.DefaultWorkingDirectory)"
           displayName: "Install newman"
 
-        - script: 'newman run Teste.json --reporters cli,junit --reporter-junit-export Result\Result.xml --suppress-exit-code'
+        - script: 'newman run Teste.json --reporters cli,junit --reporter-junit-export Results\Result.xml --suppress-exit-code'
           displayName: "Run API Tests"
           continueOnError: true
 
