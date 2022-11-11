@@ -48,12 +48,12 @@ stages:
           workingDirectory: "$(System.DefaultWorkingDirectory)"
           displayName: "Install newman"
 
-        - script: 'newman run Teste.json --reporters cli,junit --reporter-junit-export Result\junitReport.xml --suppress-exit-code'
+        - script: 'newman run Teste.json --reporters cli,junit --reporter-junit-export Result\Result.xml --suppress-exit-code'
           displayName: "Run API Tests"
           continueOnError: true
 
         - task: PublishTestResults@2
           displayName: "Publish Test Results"
           inputs:
-            testResultsFiles: '$(System.DefaultWorkingDirectory)\Results\*.xml '
+            testResultsFiles: '$(System.DefaultWorkingDirectory)\Results\Result*.xml '
             failTaskOnFailedTests: true
