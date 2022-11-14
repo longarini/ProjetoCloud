@@ -31,7 +31,8 @@ module.exports = app => {
     user
       .save(user)
       .then(data => {
-        res.send(data);
+        res.send({
+          message:'Criado com sucesso.'});
       })
       .catch(err => {
         res.status(500).send({
@@ -86,15 +87,15 @@ module.exports = app => {
             const token = jwt.sign({ id }, process.env.SECRET, {
               expiresIn: 300 // expires in 5min
             });
-            return res.status(200).json({ auth: true, token: token });
+            return res.status(200).json({ auth: true, token: token, id: id });
           }
           else {
-            return res.status(401).send({ message: 'Senha Errada.' });
+            return res.status(401).json({ message: 'Senha Errada.' });
           }
         });
       }
       else {
-        return res.status(401).send({ message: 'Usuário nãom encontrado.' });
+        return res.status(401).json({ message: 'Usuário não encontrado.' });
       }
     });
   };

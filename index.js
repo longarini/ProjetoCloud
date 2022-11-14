@@ -1,6 +1,6 @@
 const app = require('./config/express')();
+require('./config/mongoose');
 const port = app.get('port');
-const mongoose = require('./config/mongoose');
 require("dotenv-safe").config();
 
 app.listen(port, () => {

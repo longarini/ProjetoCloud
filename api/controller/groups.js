@@ -159,8 +159,8 @@ module.exports = app => {
             res.status(400).send({ message: "Necessário o envio dos dados para busca." });
             return;
         }
-        userId = req.body.idUser;
-        Group.find({ admins: userId }, function(err, result){
+        userId = req.params.idUser;
+        Groups.find({ admins: userId }, function(err, result){
             if (err) throw err;
 
             if (result != undefined) {
