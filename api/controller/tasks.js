@@ -2,6 +2,7 @@ const jwtValidate = require('../../config/jwt');
 require("dotenv-safe").config();
 
 module.exports = app => {
+    const Group = require('../models/groups');
     const Tasks = require('../models/tasks');
 
     const controller = {};
@@ -19,7 +20,7 @@ module.exports = app => {
             return;
         }
 
-        var query = Group.findOne({ user: req.body.groupId });
+        var query = Group.findOne({ _id: req.body.groupId });
         var result = await query.exec();
         groupId = result._id;
 
@@ -30,7 +31,7 @@ module.exports = app => {
 
         const task = new Tasks({
 
-            groupId: adminUser,
+            groupId: groupId,
             nomeTask: req.body.name,
             descricaoTask: req.body.descricao,
             pontosTask: req.body.pontos,
@@ -85,7 +86,7 @@ module.exports = app => {
             return;
         }
 
-        Task.find({ userId: req.body.userId }, function (err, task) {
+        Tasks.find({ groupId:  req.params.idGroup}, function (err, task) {
             if (err) throw err;
 
             if (task != undefined) {
