@@ -21,34 +21,12 @@ module.exports = app => {
             return;
         }
 
-        const admins = req.body.adminUsers;
-        const comuns = req.body.comunUsers;
-        var adminUsers = [];
-        var comunUsers = [];
-        var adminUser;
-
-        var query = User.findOne({ user: req.body.user });
-        var result = await query.exec();
-        adminUser = result._id;
-
-        query = User.find({ user: { $in: admins } });
-        result = await query.exec();
-        result.forEach(element =>
-            adminUsers.push(element._id)
-        );
-
-        query = User.find({ user: { $in: comuns } });
-        result = await query.exec();
-        result.forEach(element =>
-            comunUsers.push(element._id)
-        );
-
         const group = new Groups({
-            user: adminUser,
-            nomeGrupo: req.body.nomeGrupo,
-            adminUsers: adminUsers,
-            comunUsers: comunUsers,
-            ativo: req.body.ativo,
+            user: req.body.idUser,
+            nomeGrupo: req.body.groupName,
+            adminUsers: [],
+            comunUsers: [],
+            ativo: true,
 
         });
 
@@ -113,41 +91,6 @@ module.exports = app => {
         Groups.findOneAndUpdate(filter, set);
     }
 
-    controller.removeTaskFromGroup = async (req, res) => {
-
-        await jwtValidate.verifyJWT(req, res);
-
-        if (res.statusCode != 200) {
-            return;
-        }
-
-        if (!req.body) {
-            res.status(400).send({ message: "Necessário o envio dos dados." });
-            return;
-        }
-
-        query = Group.find({ _id: req.body.id });
-        result = await query.exec();
-
-        newsTasks = [];
-        result.tasks.forEach(element => {
-            if (element.id !== req.body.idTaskRemove) {
-                newTasks.push(element)
-            }
-        })
-
-        filter = { 'id': req.body.id };
-        set = {
-            '$set':
-            {
-                'tasks': newTasks,
-            }
-        };
-
-        Groups.findOneAndUpdate(filter, set);
-
-    }
-
     controller.getGroupByAdmin = async (req, res) => {
         await jwtValidate.verifyJWT(req, res);
 
@@ -160,55 +103,7 @@ module.exports = app => {
             return;
         }
         userId = req.params.idUser;
-        Groups.find({ admins: userId }, function(err, result){
-            if (err) throw err;
-
-            if (result != undefined) {
-                return res.status(200).send(result);
-            }
-            else {
-                return res.status(401).send({ message: 'Grupo não encontrado.' });
-            }
-        });
-    }
-
-    controller.getGroupByComun = async (req, res) => {
-        await jwtValidate.verifyJWT(req, res);
-
-        if (res.statusCode != 200) {
-            return;
-        }
-
-        if (!req.body) {
-            res.status(400).send({ message: "Necessário o envio dos dados para busca." });
-            return;
-        }
-        userId = req.body.idUser;
-        Group.find({ comuns: userId }, function(err, result){
-            if (err) throw err;
-
-            if (result != undefined) {
-                return res.status(200).send(result);
-            }
-            else {
-                return res.status(401).send({ message: 'Grupo não encontrado.' });
-            }
-        });
-    }
-
-    controller.getGroupById = async (req, res) => {
-        await jwtValidate.verifyJWT(req, res);
-
-        if (res.statusCode != 200) {
-            return;
-        }
-
-        if (!req.body) {
-            res.status(400).send({ message: "Necessário o envio dos dados para busca." });
-            return;
-        }
-
-        Group.find({ _id: req.body.id }, function(err, result){
+        Groups.find({ user: userId }, function(err, result){
             if (err) throw err;
 
             if (result != undefined) {
