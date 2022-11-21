@@ -85,7 +85,7 @@ module.exports = app => {
           if (isMatch) {
             const id = user.id;
             const token = jwt.sign({ id }, process.env.SECRET, {
-              expiresIn: 300 // expires in 5min
+              //expiresIn: 300 // expires in 5min
             });
             return res.status(200).json({ auth: true, token: token, id: id });
           }

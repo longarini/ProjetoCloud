@@ -21,34 +21,12 @@ module.exports = app => {
             return;
         }
 
-        const admins = req.body.adminUsers;
-        const comuns = req.body.comunUsers;
-        var adminUsers = [];
-        var comunUsers = [];
-        var adminUser;
-
-        var query = User.findOne({ user: req.body.user });
-        var result = await query.exec();
-        adminUser = result._id;
-
-        query = User.find({ user: { $in: admins } });
-        result = await query.exec();
-        result.forEach(element =>
-            adminUsers.push(element._id)
-        );
-
-        query = User.find({ user: { $in: comuns } });
-        result = await query.exec();
-        result.forEach(element =>
-            comunUsers.push(element._id)
-        );
-
         const group = new Groups({
-            user: adminUser,
-            nomeGrupo: req.body.nomeGrupo,
-            adminUsers: adminUsers,
-            comunUsers: comunUsers,
-            ativo: req.body.ativo,
+            user: req.body.idUser,
+            nomeGrupo: req.body.groupName,
+            adminUsers: [],
+            comunUsers: [],
+            ativo: true,
 
         });
 
@@ -208,7 +186,7 @@ module.exports = app => {
             return;
         }
 
-        Group.find({ _id: req.body.id }, function(err, result){
+        Groups.findOne({ user: req.params.idUser, _id: req.params.idGroup }, function(err, result){
             if (err) throw err;
 
             if (result != undefined) {
