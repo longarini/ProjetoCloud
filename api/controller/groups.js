@@ -91,41 +91,6 @@ module.exports = app => {
         Groups.findOneAndUpdate(filter, set);
     }
 
-    controller.removeTaskFromGroup = async (req, res) => {
-
-        await jwtValidate.verifyJWT(req, res);
-
-        if (res.statusCode != 200) {
-            return;
-        }
-
-        if (!req.body) {
-            res.status(400).send({ message: "Necessário o envio dos dados." });
-            return;
-        }
-
-        query = Group.find({ _id: req.body.id });
-        result = await query.exec();
-
-        newsTasks = [];
-        result.tasks.forEach(element => {
-            if (element.id !== req.body.idTaskRemove) {
-                newTasks.push(element)
-            }
-        })
-
-        filter = { 'id': req.body.id };
-        set = {
-            '$set':
-            {
-                'tasks': newTasks,
-            }
-        };
-
-        Groups.findOneAndUpdate(filter, set);
-
-    }
-
     controller.getGroupByAdmin = async (req, res) => {
         await jwtValidate.verifyJWT(req, res);
 
@@ -138,6 +103,7 @@ module.exports = app => {
             return;
         }
         userId = req.params.idUser;
+        
         Groups.find({ admins: userId }, function(err, result){
             if (err) throw err;
 
