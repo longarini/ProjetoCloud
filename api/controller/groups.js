@@ -221,5 +221,39 @@ module.exports = app => {
         });
     }
 
+    controller.insertUser = async (req, res) => {
+
+        await jwtValidate.verifyJWT(req, res);
+
+        if (res.statusCode != 200) {
+            return;
+        }
+
+        if (!req.body) {
+            res.status(400).send({ message: "Necessário o envio dos dados de cadastro." });
+            return;
+        }
+
+        Groups.findOne({ _id: req.body.id }, function (err, result) {
+            if (err) throw err;
+
+            if (result != undefined) {
+                result.comunUsers.push(req.body.user);
+
+                result.save(function (err) {
+                    if (err) {
+                        console.error('ERROR!');
+                    }
+                }
+                );
+
+                return res.status(200).send(result);
+            }
+            else {
+                return res.status(401).send({ message: 'Grupo não encontrado.' });
+            }
+        });
+    }
+
     return controller;
 };
