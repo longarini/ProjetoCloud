@@ -102,9 +102,8 @@ module.exports = app => {
             res.status(400).send({ message: "Necessário o envio dos dados para busca." });
             return;
         }
-        userId = req.params.idUser;
-        
-        Groups.find({ admins: userId }, function(err, result){
+
+        Groups.find({ user: req.params.idUser }, function (err, result) {
             if (err) throw err;
 
             if (result != undefined) {
@@ -128,7 +127,7 @@ module.exports = app => {
             return;
         }
         userId = req.body.idUser;
-        Group.find({ comuns: userId }, function(err, result){
+        Group.find({ comuns: userId }, function (err, result) {
             if (err) throw err;
 
             if (result != undefined) {
@@ -152,7 +151,7 @@ module.exports = app => {
             return;
         }
 
-        Groups.findOne({ user: req.params.idUser, _id: req.params.idGroup }, function(err, result){
+        Groups.findOne({ user: req.params.idUser, _id: req.params.idGroup }, function (err, result) {
             if (err) throw err;
 
             if (result != undefined) {
@@ -165,7 +164,7 @@ module.exports = app => {
     }
 
     controller.deleteGroup = async (req, res) => {
-        
+
         await jwtValidate.verifyJWT(req, res);
 
         if (res.statusCode != 200) {
@@ -186,6 +185,40 @@ module.exports = app => {
         };
 
         Groups.findOneAndUpdate(filter, set);
+    }
+
+    controller.deleteUser = async (req, res) => {
+
+        await jwtValidate.verifyJWT(req, res);
+
+        if (res.statusCode != 200) {
+            return;
+        }
+
+        if (!req.body) {
+            res.status(400).send({ message: "Necessário o envio dos dados de cadastro." });
+            return;
+        }
+
+        Groups.findOne({ _id: req.body.id }, function (err, result) {
+            if (err) throw err;
+
+            if (result != undefined) {
+                result.comunUsers.remove(req.body.user);
+
+                result.save(function (err) {
+                    if (err) {
+                        console.error('ERROR!');
+                    }
+                }
+                );
+
+                return res.status(200).send(result);
+            }
+            else {
+                return res.status(401).send({ message: 'Grupo não encontrado.' });
+            }
+        });
     }
 
     return controller;
