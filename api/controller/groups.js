@@ -127,7 +127,7 @@ module.exports = app => {
             return;
         }
 
-        Groups.find({comunUsers : req.params.idUser}, function (err, result) {
+        Groups.find({ comunUsers: req.params.idUser }, function (err, result) {
             if (err) throw err;
 
             if (result != undefined) {
@@ -234,23 +234,34 @@ module.exports = app => {
             return;
         }
 
-        Groups.findOne({ _id: req.body.id }, function (err, result) {
-            if (err) throw err;
+        User.findOne({ user: req.body.user }, function (errUser, user) {
+            if (errUser) throw errUser;
 
-            if (result != undefined) {
-                result.comunUsers.push(req.body.user);
+            if (user != undefined) {
+                Groups.findOne({ _id: req.body.id }, function (err, result) {
+                    if (err) throw err;
 
-                result.save(function (err) {
-                    if (err) {
-                        console.error('ERROR!');
+                    if (result != undefined) {
+
+                        if (!result.comunUsers.includes(user._id)) {
+                            result.comunUsers.push(user._id);
+                            result.nameUsers.push(user.name);
+
+                            result.save(function (err) {
+                                if (err) {
+                                    console.error('ERROR!');
+                                }
+                            });
+                            return res.status(200).send(result);
+                        }
+                        else {
+                            return res.status(401).send({ message: 'Grupo não encontrado.' });
+                        }
                     }
-                }
-                );
-
-                return res.status(200).send(result);
+                });
             }
             else {
-                return res.status(401).send({ message: 'Grupo não encontrado.' });
+                return res.status(401).send({ message: 'Usuario não encontrado.' });
             }
         });
     }
