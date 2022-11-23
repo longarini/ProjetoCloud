@@ -134,7 +134,7 @@ module.exports = app => {
             return;
         }
 
-        Task.findOneAndDelete({ _id: req.body.id }, function (err, task) {
+        Tasks.findOneAndDelete({ _id: req.body.id }, function (err, task) {
             if (err) throw err;
 
             if (task != undefined) {
